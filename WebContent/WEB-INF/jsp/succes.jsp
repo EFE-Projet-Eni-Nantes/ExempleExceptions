@@ -8,5 +8,8 @@
 </head>
 <body>
 	<h1>Enregistrement effectué</h1>
+	<p>
+		${personne.prenom } ${personne.nom } a bien été enregistré.
+	</p>
 </body>
 </html>

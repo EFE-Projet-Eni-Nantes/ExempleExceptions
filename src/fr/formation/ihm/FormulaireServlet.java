@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import fr.formation.bll.BllException;
 import fr.formation.bll.FormulaireManager;
+import fr.formation.bo.Personne;
 
 @WebServlet("/formulaire")
 public class FormulaireServlet extends HttpServlet {
@@ -31,7 +32,8 @@ public class FormulaireServlet extends HttpServlet {
 		FormulaireManager fm = new FormulaireManager();
 		String output = "/WEB-INF/jsp/succes.jsp";
 		try {
-			fm.ajout(nom, prenom, age);
+			Personne p = fm.ajout(nom, prenom, age);
+			request.setAttribute("personne", p);
 			
 		} catch (BllException e) {
 			request.setAttribute("erreurs", e.getMessages());

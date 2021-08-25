@@ -12,9 +12,9 @@ public class FormulaireManager {
 		fDao = new FormulaireDao();
 	}
 	
-	public void ajout(String nom, String prenom, String age) throws BllException {
+	public Personne ajout(String nom, String prenom, String age) throws BllException {
 		BllException exception = new BllException();
-		
+		Personne p = null;
 		if (nom == null || nom.trim().isEmpty()) {
 			exception.ajoutMessage("Le nom est obligatoire");
 		}
@@ -33,7 +33,7 @@ public class FormulaireManager {
 		}
 		
 		if (exception.estVide()) {
-			Personne p = new Personne(nom, prenom, a);
+			p = new Personne(nom, prenom, a);
 			try {
 				fDao.add(p);
 			} catch (DalException e) {
@@ -44,5 +44,7 @@ public class FormulaireManager {
 		if (!exception.estVide()) {
 			throw exception;
 		}
+		
+		return p;
 	}
 }
